@@ -1,53 +1,4 @@
-<?php
-
-use Illuminate\Database\Seeder;
-use App\Movie;
-use App\User;
-
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-		self::seedCatalog();
-		$this->command->info('Tabla catálogo inicializada con datos!');
-
-		self::seedUsers();
-    	$this->command->info('Tabla usuarios inicializada con datos!');
-	}
-	
-	public function seedCatalog()
-	{
-		DB::table('movies')->delete();
-		foreach( $this->arrayPeliculas as $pelicula ) {
-		    $p = new Movie;
-		    $p->title = $pelicula['title'];
-		    $p->year = $pelicula['year'];
-		    $p->director = $pelicula['director'];
-		    $p->poster = $pelicula['poster'];
-		    $p->rented = $pelicula['rented'];
-		    $p->synopsis = $pelicula['synopsis'];
-		    $p->save();
-		}
-	}
-	private function seedUsers()
-	{
-		DB::table('users')->delete();
-		foreach($this->arrayUsers as $users){
-			$us = new User;
-			$us->name = $users['name'];
-			$us->email = $users['email'];
-			$us->password = bcrypt($users['password']);
-			$us->save();
-		}
-	}
-
-
-	private $arrayPeliculas = array(
+private $arrayPeliculas = array(
 		array(
 			'title' => 'El padrino',
 			'year' => '1972', 
@@ -208,7 +159,4 @@ class DatabaseSeeder extends Seeder
 			'rented' => true, 
 			'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
 		)
-
 	);
-			
-   }
