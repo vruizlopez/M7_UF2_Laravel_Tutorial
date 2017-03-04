@@ -1,29 +1,28 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Crear Película</h1>
     <form action="{{url('catalog/postCreate')}}" method="POST">
         {{method_field('PUT')}}
         {{ csrf_field() }}
         <div>
-        <label>Titulo</label>
+        <label>Titulo</label><br>
         <input type="text" name="title">
         </div>
         <div>
-        <label>Año</label>
+        <label>Año</label><br>
         <input type="text" name="year">
         </div>
         <div>
-        <label>Director</label>
+        <label>Director</label><br>
         <input type="text" name="director">
         </div>
         <div>
-        <label>Poster</label>
+        <label>Poster</label><br>
         <input type="text" name="poster">
         </div>
         <div>
-        <label>Resumen</label>
+        <label>Resumen</label><br>
         <input type="textarea" name="synopsis">
-        </div>
+        </div><br>
         <input type="submit" value="Crear película" class="btn btn-primary">
      </form>
 @stop

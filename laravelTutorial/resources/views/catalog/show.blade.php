@@ -1,10 +1,8 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Catálogo Películas</h1>
     <div class="row">
         <div class="col-sm-4">
                 <img src="{{$Pelicula->poster}}" style="max-width:100%" />
-
         </div>
         <div class="col-sm-8">
             <h1>{{$Pelicula->title}}</h1>
@@ -20,7 +18,6 @@
             @endif
             <button type="button" class="btn btn-warning" onclick="location.href='{{url('/')}}/catalog/edit/{{$Pelicula->id}}'"><span class="glyphicon glyphicon-pencil"></span>Editar película</button>
             <button type="button" class="btn btn-default" onclick="window.history.back()"><span class="glyphicon glyphicon-chevron-left" </span>Volver al listado</button>
-
         </div>
-    </div>
+    </div><br>
 @stop
