@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Modificar pelicula</h1>
+    <h1>Editar Película</h1>
     <form action="{{url('catalog/postEdit/')}}/{{$id}}" method="POST">
         {{method_field('PUT')}}
         {{ csrf_field() }}
@@ -24,6 +24,6 @@
         <label>Resumen</label>
         <input type="textarea" name="synopsis" value="{{$Pelicula->synopsis}}">
         </div>
-        <input type="submit" value="Actualizar pelicula" class="btn btn-primary">
+        <input type="submit" value="Actualizar Película" class="btn btn-primary">
     </form>
 @stop

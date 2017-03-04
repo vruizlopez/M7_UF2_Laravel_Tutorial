@@ -8,7 +8,7 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="{{ url('/assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,15 +18,16 @@
     <![endif]-->
   </head>
   <body>
-    @include('partials.navbar')
 
+    @include('partials.navbar')
     <div class="container">
-      @yield('content')
+    @yield('content')
     </div>
 
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ url('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

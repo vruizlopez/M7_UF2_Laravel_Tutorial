@@ -4,25 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
-
 class CatalogController extends Controller
 {
-	public function getIndex()
-	{
-		$arrayPeliculas = Movie::all();	
-	    //return view('catalog.index', array("arrayPeliculas"=>$this->arrayPeliculas));
-	    return view('catalog.index', array("arrayPeliculas"=>$arrayPeliculas));
-	}	
-	public function getShow($id)
-	{
-		$Pelicula = Movie::findOrFail($id);	
-	    //return view('catalog.show', array("Pelicula"=>$this->arrayPeliculas[$id],"id"=>$id));
-	    return view('catalog.show',array('Pelicula'=>$Pelicula));
-
-	}
-	public function postCreate(Request $request)
-	{
-	$movie = new Movie();
+    public function getIndex(){
+        $arrayPeliculas = Movie::all();
+        //$arrayPeliculas = $this->ArrayPeliculas;
+    	return view('catalog.index', array("arrayPeliculas"=>$arrayPeliculas));
+    }
+    public function getShow($id){
+        //return view('catalog.show', array("Peliculas"=>$this->arrayPeliculas[$id]),
+        //array('id'=>$id));
+        $Pelicula = Movie::find($id);
+    	return view('catalog.show',array('Pelicula'=>$Pelicula));
+    }
+    public function getCreate(){
+    	return view('catalog.create');
+    }
+    public function getEdit($id){
+        //return view('catalog.edit', array('id'=>$id));
+        $Pelicula = Movie::findOrFail($id);
+    	return view('catalog.edit',array('Pelicula'=>$Pelicula, 'id'=>$id));
+    }
+    public function postCreate(Request $request){
+        $movie = new Movie();
         if ($request-> has("title") && $request-> has("year") && $request-> has("director") && $request-> has("poster") && $request-> has("synopsis"))
         {
             $movie->title = $request->input("title");
@@ -32,13 +36,12 @@ class CatalogController extends Controller
             $movie->synopsis = $request->input("synopsis");
             $movie->rented = false;
             $movie->save();
-            return "Creado correctamente";
+            return "Pelicula creada con éxito";
         }else
-        return "Creado incorrectamente";
+        return "No se ha podido crear la Pelicula, revise los campos*";
     }
-    public function postEdit(Request $request, $id)
-    {
-        $movie = Movie::find($id);
+    public function postEdit(Request $request, $id){
+         $movie = Movie::find($id);
         if( $request->has("title") && $request->has("year") && $request->has("director") && $request->has("poster") && $request->has("synopsis"))
          {
             $movie->title = $request->input("title");
@@ -50,9 +53,8 @@ class CatalogController extends Controller
             if( $request->has("rented") )
                 $movie->rented = true;
             $movie->save();
-            return "Actualizado correctamente";
+            return "Pelicula actualizada correctamente";
         } else
-            return "Faltan datos para poder ser actualizado";
+            return "No se ha podido actualizar la Pelicula, revise los campos*";
     }
-
 }
